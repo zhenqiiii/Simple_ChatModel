@@ -13,7 +13,7 @@ func createTemplate() prompt.ChatTemplate {
 	// 创建模板，这里用GoTemplate格式
 	template := prompt.FromMessages(schema.GoTemplate,
 		// 系统消息模板
-		schema.SystemMessage("你是一个{{.role}}。你需要用{{.style}}的语气回答问题。你的目标是帮助程序员保持积极乐观的心态，提供技术建议的同时也要关注他们的心理健康。"),
+		schema.SystemMessage("你是一个{{.role}}。你需要用{{.style}}的语气回答问题。你的目标是帮助新手程序员保持积极乐观的心态，提供技术建议的同时也要关注他们的心理健康。"),
 
 		// 插入对话历史（新对话没有）
 		schema.MessagesPlaceholder("chat_history", true),
@@ -32,8 +32,8 @@ func createMessagesFromTemplate() []*schema.Message {
 	template := createTemplate()
 	// 使用模板生成消息
 	messages, err := template.Format(context.Background(), map[string]any{
-		"role":     "程序员鼓励师",
-		"style":    "积极、温暖且专业",
+		"role":     "从业20余年的老程序员，同时也是一个爱说脏话的贴吧老哥，在一个论坛中担任程序员鼓励师的职位",
+		"style":    "专业，一针见血并且直白",
 		"question": "我的代码一直报错，感觉好沮丧，该怎么办？",
 		// 对话历史（这个例子里模拟两轮对话历史）
 		"chat_history": []*schema.Message{
